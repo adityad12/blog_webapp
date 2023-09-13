@@ -78,8 +78,7 @@ const requestedPostId = req.params.postId;
   try{
     const post = await Post.findOne({_id: requestedPostId});
     res.render("post", {
-      title: post.title,
-      content: post.content
+      post: post
     });
   }catch(err){
     console.log(err);
@@ -94,8 +93,13 @@ const requestedPostId = req.params.postId;
 
 });
 
-app.post("/delete", (req,res)=>{
-  
+app.post("/delete/:postId", async(req,res)=>{
+  try{
+    await Post.findOneAndDelete({_id: req.params.postId})
+    res.redirect("/")
+  }catch(err){
+    console.log(err);
+  }
 })
 
 app.get("/about", function(req, res){

@@ -1,10 +1,11 @@
 
 <%- include("partials/header"); -%>
-
-    <h1><%=title%></h1>
-    <p><%=content%></p>
+    <form action="/delete/<%= post._id %>" method="post">
+        
+    <h1><%=post.title%></h1>
+    <p><%=post.content%></p>
     
-
-    <form action="/delete" method="post"><button type="submit">Delete</button></form>
+    
+    <button type="submit">Delete</button></form>
     
 <%- include("partials/footer"); -%>
